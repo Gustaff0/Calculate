@@ -102,11 +102,12 @@ def divide(request, *args, **kwargs):
                     }
                     response = JsonResponse(response_data)
                     response.status_code = 400
-                divide = cif1['A'] // cif1['B']
-                response_data = {
-                    'answer': str(divide),
-                }
-                response = JsonResponse(response_data)
+                else:    
+                    divide = cif1['A'] / cif1['B']
+                    response_data = {
+                        'answer': str(divide),
+                    }
+                    response = JsonResponse(response_data)
             except:
                 response_data = {
                     'answer': 'Enter only whole numbers!!'

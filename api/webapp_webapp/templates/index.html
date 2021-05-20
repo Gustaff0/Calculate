@@ -56,12 +56,11 @@
     json = await response.json()
     let div = document.getElementById('container')
     let h3 = document.createElement('h3')
-    h3.classList.add('colorh')
     let text = document.createTextNode(json.answer)
     h3.appendChild(text)
     div.appendChild(h3)
-    if (text === 'Enter only whole numbers!!' || text === 'Not Json!!' || text === 'Division by zero!!!'){
-        h3.classList.add('error')
+    if (json.answer == 'Enter only whole numbers!!' || json.answer == 'Not Json!!' || json.answer == 'Division by zero!!!') {
+        h3.classList.add('error12')
     }
     else {
         h3.classList.add('good')
@@ -88,10 +87,16 @@
     json = await response.json()
     let div = document.getElementById('container')
     let h3 = document.createElement('h3')
-    h3.classList.add('colorh')
     let text = document.createTextNode(json.answer)
     h3.appendChild(text)
     div.appendChild(h3)
+    if (json.answer == 'Enter only whole numbers!!' || json.answer == 'Not Json!!' || json.answer == 'Division by zero!!!') {
+        h3.classList.add('error12')
+    }
+    else {
+        h3.classList.add('good')
+    }
+
     }
 
 
@@ -116,10 +121,15 @@
     json = await response.json()
     let div = document.getElementById('container')
     let h3 = document.createElement('h3')
-    h3.classList.add('colorh')
     let text = document.createTextNode(json.answer)
     h3.appendChild(text)
     div.appendChild(h3)
+    if (json.answer == 'Enter only whole numbers!!' || json.answer == 'Not Json!!' || json.answer == 'Division by zero!!!') {
+        h3.classList.add('error12')
+    }
+    else {
+        h3.classList.add('good')
+    }
     }
 
 
@@ -145,17 +155,23 @@
     json = await response.json()
     let div = document.getElementById('container')
     let h3 = document.createElement('h3')
-    h3.classList.add('colorh')
     let text = document.createTextNode(json.answer)
     h3.appendChild(text)
     div.appendChild(h3)
+    if (json.answer == 'Enter only whole numbers!!' || json.answer == 'Not Json!!' || json.answer == 'Division by zero!!!') {
+        h3.classList.add('error12')
+    }
+    else {
+        h3.classList.add('good')
+    }
+
     }
 
 
 </script>
 
 <style type="text/css">
-.error {
+.error12 {
     color: red;
 }
 .good{
