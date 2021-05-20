@@ -102,7 +102,7 @@ def divide(request, *args, **kwargs):
                     }
                     response = JsonResponse(response_data)
                     response.status_code = 400
-                else:    
+                else:
                     divide = cif1['A'] / cif1['B']
                     response_data = {
                         'answer': str(divide),
