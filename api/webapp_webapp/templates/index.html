@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<form method="POST">
+    <input id="A">
+    <input id="B">
+
+    <input onclick="add(event)" type="submit" data-url="{% url 'add' %}" value="add">
+    <input type="submit" onclick="subtract(event)" data-url="{% url 'subtract' %}" value="subtract">
+    <input type="submit" onclick="multiply(event)" data-url="{% url 'multiply' %}" value="multiply">
+    <input type="submit" onclick="divide(event)" data-url="{% url 'divide' %}" value="divide">
+</form>
+<div style="display: inline-block" id="container">
+    <h3>Блок Ответов:</h3>
+</div>
+
+
+
+<script>
+    function getCookie(name) {
+  if (!document.cookie) {
+    return null;
+  }
+  const xsrfCookies = document.cookie.split(';')
+    .map(c => c.trim())
+    .filter(c => c.startsWith(name + '='));
+
+  if (xsrfCookies.length === 0) {
+    return null;
+  }
+  return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+}
+
+    async function add(event) {
+    event.preventDefault()
+    const csrfToken = getCookie('csrftoken')
+    const headers = new Headers({
+        'Content-Type': 'x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken
+    });
+    let button = event.target
+    let url = button.dataset.url
+    let a = document.getElementById("A").value
+    let b = document.getElementById("B").value
+    let response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({"A": a, "B": b})
+    })
+    json = await response.json()
+    let div = document.getElementById('container')
+    let h3 = document.createElement('h3')
+    h3.classList.add('colorh')
+    let text = document.createTextNode(json.answer)
+    h3.appendChild(text)
+    div.appendChild(h3)
+    if (text === 'Enter only whole numbers!!' || text === 'Not Json!!' || text === 'Division by zero!!!'){
+        h3.classList.add('error')
+    }
+    else {
+        h3.classList.add('good')
+    }
+    }
+
+
+    async function subtract(event) {
+    event.preventDefault()
+    const csrfToken = getCookie('csrftoken')
+    const headers = new Headers({
+        'Content-Type': 'x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken
+    });
+    let button = event.target
+    let url = button.dataset.url
+    let a = document.getElementById("A").value
+    let b = document.getElementById("B").value
+    let response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({"A": a, "B": b})
+    })
+    json = await response.json()
+    let div = document.getElementById('container')
+    let h3 = document.createElement('h3')
+    h3.classList.add('colorh')
+    let text = document.createTextNode(json.answer)
+    h3.appendChild(text)
+    div.appendChild(h3)
+    }
+
+
+
+
+    async function multiply(event) {
+    event.preventDefault()
+    const csrfToken = getCookie('csrftoken')
+    const headers = new Headers({
+        'Content-Type': 'x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken
+    });
+    let button = event.target
+    let url = button.dataset.url
+    let a = document.getElementById("A").value
+    let b = document.getElementById("B").value
+    let response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({"A": a, "B": b})
+    })
+    json = await response.json()
+    let div = document.getElementById('container')
+    let h3 = document.createElement('h3')
+    h3.classList.add('colorh')
+    let text = document.createTextNode(json.answer)
+    h3.appendChild(text)
+    div.appendChild(h3)
+    }
+
+
+
+
+
+    async function divide(event) {
+    event.preventDefault()
+    const csrfToken = getCookie('csrftoken')
+    const headers = new Headers({
+        'Content-Type': 'x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken
+    });
+    let button = event.target
+    let url = button.dataset.url
+    let a = document.getElementById("A").value
+    let b = document.getElementById("B").value
+    let response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({"A": a, "B": b})
+    })
+    json = await response.json()
+    let div = document.getElementById('container')
+    let h3 = document.createElement('h3')
+    h3.classList.add('colorh')
+    let text = document.createTextNode(json.answer)
+    h3.appendChild(text)
+    div.appendChild(h3)
+    }
+
+
+</script>
+
+<style type="text/css">
+.error {
+    color: red;
+}
+.good{
+   color: blue;
+}
+</style>
+
+
+
+</body>
+</html>

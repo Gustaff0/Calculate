@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from webapp.views import add, subtract, multiply, divide
+from webapp_webapp.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('add/', add, name='add'),
     path('subtract/', subtract, name='subtract'),
     path('multiply/', multiply, name='multiply'),
-    path('divide/', divide, name='divide')
+    path('divide/', divide, name='divide'),
+    path('index/', index, name='index')
+
 
 ]
